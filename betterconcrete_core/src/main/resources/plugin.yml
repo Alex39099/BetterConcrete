@@ -1,0 +1,32 @@
+main: com.github.alexqp.betterconcrete.main.BetterConcrete
+name: ${project.parent.name}
+version: ${project.parent.version}
+author: alexqp
+description: ${project.parent.description}
+api-version: "1.16"
+website: ${project.parent.url}
+
+commands:
+  betterconcrete:
+    description: Credits and available commands.
+    aliases: [bc]
+
+
+permissions:
+  betterconcrete.*:
+    description: Gives access to all BetterConcrete permissions.
+    default: false
+    children:
+      betterconcrete.reload: true
+      betterconcrete.discover: true
+      betterconcrete.cauldron: true
+      betterconcrete.updatechecker: true
+  betterconcrete.discover:
+    description: Allows to discover all available recipes added by the plugin.
+    default: op
+  betterconcrete.cauldron:
+    description: Allows to use the cauldron mechanic.
+    default: true
+  betterconcrete.updatechecker:
+    description: Get notified on login if a new update of the plugin exists.
+    default: false
