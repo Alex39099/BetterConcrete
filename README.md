@@ -14,7 +14,7 @@ Releases will only be marked on Spigot.
 
 Source
 ------
-Source code is currently available on [GitHub](https://github.com/Alex39099/Redye). Please respect the license.
+Source code is currently available on [GitHub](https://github.com/Alex39099/BetterConcrete). Please respect the license.
 
 Contributing
 ------
