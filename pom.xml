@@ -24,16 +24,10 @@
 
     <groupId>me.alexqp</groupId>
     <artifactId>betterconcrete-parent</artifactId>
-    <version>1.8.1</version>
+    <version>1.9.0</version>
     <modules>
         <module>betterconcrete_core</module>
         <module>betterconcrete_dist</module>
-        <module>betterconcrete_craftbukkit_1_13_R1</module>
-        <module>betterconcrete_craftbukkit_1_13_R2</module>
-        <module>betterconcrete_craftbukkit_1_14_R1</module>
-        <module>betterconcrete_craftbukkit_1_15_R1</module>
-        <module>betterconcrete_craftbukkit_1_16_R1</module>
-        <module>betterconcrete_craftbukkit_1_16_R2</module>
         <module>betterconcrete_craftbukkit_1_16_R3</module>
     </modules>
     <name>BetterConcrete</name>
