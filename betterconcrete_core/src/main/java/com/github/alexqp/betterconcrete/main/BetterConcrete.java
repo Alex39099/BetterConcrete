@@ -35,8 +35,9 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 import java.util.logging.Level;
 
 public class BetterConcrete extends JavaPlugin implements Debugable {
@@ -49,20 +50,34 @@ public class BetterConcrete extends JavaPlugin implements Debugable {
     private final String[] furnaceConfigNames = {"furnace_recipes", "add_recipes_on_login", "enable", "exp_amount", "cooking_time"};
     private final String[] cauldronConfigNames = {"cauldron_mechanic", "enable", "check_empty", "change_waterlevel", "max_stack_size"};
 
-    private static final Set<String> defaultInternalsVersions = Set.of("v1_17_R1", "v1_18_R1", "v1_18_R2", "v1_19_R1", "v1_19_R2");
+    private static final String defaultInternalsVersion = "v1_19_R2";
     private static InternalsProvider internals;
     static {
         try {
             String packageName = BetterConcrete.class.getPackage().getName();
-            String internalsName = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-            if (defaultInternalsVersions.contains(internalsName))
+            String internalsName = getInternalsName(Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
+            if (internalsName.equals(defaultInternalsVersion)) {
+                Bukkit.getLogger().log(Level.INFO, "BetterConcrete is using the latest implementation (last tested for " + defaultInternalsVersion + ").");
                 internals = new InternalsProvider();
-            else
+            } else {
                 internals = (InternalsProvider) Class.forName(packageName + "." + internalsName).getDeclaredConstructor().newInstance();
+            }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ClassCastException | NoSuchMethodException | InvocationTargetException exception) {
-            Bukkit.getLogger().log(Level.SEVERE, BetterConcrete.class.getSimpleName() + " could not find a valid implementation for this server version. Trying to use the default implementation...");
+            Bukkit.getLogger().log(Level.SEVERE, "BetterConcrete could not find a valid implementation for this server version. Trying to use the latest implementation...");
             internals = new InternalsProvider();
         }
+    }
+
+    private static String getInternalsName(String internalsName) {
+        Map<String, String> internalsVersions = new HashMap<>();
+        internalsVersions.put("v1_13_R1", "v1_16_R3");
+        internalsVersions.put("v1_13_R2", "v1_16_R3");
+        internalsVersions.put("v1_14_R1", "v1_16_R3");
+        internalsVersions.put("v1_15_R1", "v1_16_R3");
+        internalsVersions.put("v1_16_R1", "v1_16_R3");
+        internalsVersions.put("v1_16_R2", "v1_16_R3");
+        internalsVersions.put("v1_16_R3", "v1_16_R3");
+        return internalsVersions.getOrDefault(internalsName, defaultInternalsVersion);
     }
 
     @Override
