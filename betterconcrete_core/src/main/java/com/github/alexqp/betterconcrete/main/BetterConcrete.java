@@ -50,21 +50,22 @@ public class BetterConcrete extends JavaPlugin implements Debugable {
     private final String[] furnaceConfigNames = {"furnace_recipes", "add_recipes_on_login", "enable", "exp_amount", "cooking_time"};
     private final String[] cauldronConfigNames = {"cauldron_mechanic", "enable", "check_empty", "change_waterlevel", "max_stack_size"};
 
-    private static final String defaultInternalsVersion = "v1_19_R2";
+    private static final String defaultInternalsVersion = "v1_20_R1";
     private static InternalsProvider internals;
     static {
         try {
             String packageName = BetterConcrete.class.getPackage().getName();
             String internalsName = getInternalsName(Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
             if (internalsName.equals(defaultInternalsVersion)) {
-                Bukkit.getLogger().log(Level.INFO, "BetterConcrete is using the latest implementation (last tested for " + defaultInternalsVersion + ").");
+                Bukkit.getLogger().log(Level.INFO, BetterConcrete.class.getSimpleName() + " is using the latest implementation (last tested for " + defaultInternalsVersion + ").");
                 internals = new InternalsProvider();
             } else {
+                Bukkit.getLogger().log(Level.INFO, BetterConcrete.class.getSimpleName() + " is using the implementation for version " + internalsName + ".");
                 internals = (InternalsProvider) Class.forName(packageName + "." + internalsName).getDeclaredConstructor().newInstance();
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ClassCastException | NoSuchMethodException | InvocationTargetException exception) {
-            Bukkit.getLogger().log(Level.SEVERE, "BetterConcrete could not find a valid implementation for this server version. Trying to use the latest implementation...");
-            internals = new InternalsProvider();
+            Bukkit.getLogger().log(Level.WARNING, BetterConcrete.class.getSimpleName() + " could not find an updated implementation for this server version. " +
+                    "However the plugin is trying to use the latest implementation which should work if Minecraft did not change drastically (last tested version: " + defaultInternalsVersion + ").");            internals = new InternalsProvider();
         }
     }
 
