@@ -65,7 +65,8 @@ public class BetterConcrete extends JavaPlugin implements Debugable {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ClassCastException | NoSuchMethodException | InvocationTargetException exception) {
             Bukkit.getLogger().log(Level.WARNING, BetterConcrete.class.getSimpleName() + " could not find an updated implementation for this server version. " +
-                    "However the plugin is trying to use the latest implementation which should work if Minecraft did not change drastically (last tested version: " + defaultInternalsVersion + ").");            internals = new InternalsProvider();
+                    "However the plugin is trying to use the latest implementation which should work if Minecraft did not change drastically (last tested version: " + defaultInternalsVersion + ").");
+            internals = new InternalsProvider();
         }
     }
 
