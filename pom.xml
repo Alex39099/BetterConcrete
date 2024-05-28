@@ -35,8 +35,10 @@
     <description>This plugin provides you with some more mechanics/recipes to transform concrete into powder and the other way round.</description>
     <packaging>pom</packaging>
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <buildNo/>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
     </properties>
 
     <repositories>
