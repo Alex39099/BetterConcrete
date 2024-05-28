@@ -50,7 +50,7 @@ public class BetterConcrete extends JavaPlugin implements Debugable {
     private final String[] furnaceConfigNames = {"furnace_recipes", "add_recipes_on_login", "enable", "exp_amount", "cooking_time"};
     private final String[] cauldronConfigNames = {"cauldron_mechanic", "enable", "check_empty", "change_waterlevel", "max_stack_size"};
 
-    private static final String defaultInternalsVersion = "v1_20_R1";
+    private static final String defaultInternalsVersion = "v1_20_R3";
     private static InternalsProvider internals;
     static {
         try {
