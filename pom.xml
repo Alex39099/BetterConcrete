@@ -24,7 +24,7 @@
 
     <groupId>me.alexqp</groupId>
     <artifactId>betterconcrete-parent</artifactId>
-    <version>1.10.0</version>
+    <version>1.11.0</version>
     <modules>
         <module>betterconcrete-core</module>
         <module>betterconcrete-dist</module>
