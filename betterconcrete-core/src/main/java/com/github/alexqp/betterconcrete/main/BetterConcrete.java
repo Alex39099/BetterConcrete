@@ -35,9 +35,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.logging.Level;
 
 public class BetterConcrete extends JavaPlugin implements Debugable {
@@ -50,12 +48,13 @@ public class BetterConcrete extends JavaPlugin implements Debugable {
     private final String[] furnaceConfigNames = {"furnace_recipes", "add_recipes_on_login", "enable", "exp_amount", "cooking_time"};
     private final String[] cauldronConfigNames = {"cauldron_mechanic", "enable", "check_empty", "change_waterlevel", "max_stack_size"};
 
-    private static final String defaultInternalsVersion = "v1_20_R3";
+    private static final String defaultInternalsVersion = "Internals_v1_20_6";
     private static InternalsProvider internals;
     static {
         try {
             String packageName = BetterConcrete.class.getPackage().getName();
-            String internalsName = getInternalsName(Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
+            String minecraftVersion = Bukkit.getServer().getBukkitVersion().split("-")[0];
+            String internalsName = getInternalsName(minecraftVersion);
             if (internalsName.equals(defaultInternalsVersion)) {
                 Bukkit.getLogger().log(Level.INFO, BetterConcrete.class.getSimpleName() + " is using the latest implementation (last tested for " + defaultInternalsVersion + ").");
                 internals = new InternalsProvider();
@@ -70,16 +69,11 @@ public class BetterConcrete extends JavaPlugin implements Debugable {
         }
     }
 
-    private static String getInternalsName(String internalsName) {
-        Map<String, String> internalsVersions = new HashMap<>();
-        internalsVersions.put("v1_13_R1", "v1_16_R3");
-        internalsVersions.put("v1_13_R2", "v1_16_R3");
-        internalsVersions.put("v1_14_R1", "v1_16_R3");
-        internalsVersions.put("v1_15_R1", "v1_16_R3");
-        internalsVersions.put("v1_16_R1", "v1_16_R3");
-        internalsVersions.put("v1_16_R2", "v1_16_R3");
-        internalsVersions.put("v1_16_R3", "v1_16_R3");
-        return internalsVersions.getOrDefault(internalsName, defaultInternalsVersion);
+    private static String getInternalsName(String minecraftVersion) {
+        if (minecraftVersion.startsWith("1.13") || minecraftVersion.startsWith("1.14") || minecraftVersion.startsWith("1.15") || minecraftVersion.startsWith("1.16")) {
+            return "Internals_v1_16_5";
+        }
+        return defaultInternalsVersion;
     }
 
     @Override

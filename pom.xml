@@ -26,9 +26,9 @@
     <artifactId>betterconcrete-parent</artifactId>
     <version>1.10.0</version>
     <modules>
-        <module>betterconcrete_core</module>
-        <module>betterconcrete_dist</module>
-        <module>betterconcrete_craftbukkit_1_16_R3</module>
+        <module>betterconcrete-core</module>
+        <module>betterconcrete-dist</module>
+        <module>betterconcrete-internals_1_16_5</module>
     </modules>
     <name>BetterConcrete</name>
     <url>https://www.spigotmc.org/members/alex_qp.306806/</url>

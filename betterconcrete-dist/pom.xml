@@ -78,7 +78,7 @@
         </dependency>
         <dependency>
             <groupId>me.alexqp</groupId>
-            <artifactId>betterconcrete-craftbukkit_1_16_R3</artifactId>
+            <artifactId>betterconcrete-internals_1_16_5</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>

@@ -24,7 +24,7 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
 import org.jetbrains.annotations.NotNull;
 
-public class v1_16_R3 extends InternalsProvider {
+public class Internals_v1_16_5 extends InternalsProvider {
 
     @Override
     public Material getWaterCauldron() {
